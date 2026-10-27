@@ -89,10 +89,10 @@ export interface SkillCategory {
 // ============================================================================
 
 const DEVELOPER_INFO = {
-  name: "김형진 (Hyungjin Kim)",
+  name: "김형진",
   role: "Embedded Firmware & Edge System Developer",
   oneLiner:
-    "하드웨어 레지스터 레벨의 정밀한 제어부터 Edge AI 시스템과의 실시간 통신 아키텍처까지, 안정적인 시스템을 설계합니다.",
+    "하드웨어 레지스터 레벨의 정밀한 제어부터 Edge AI 시스템과의 실시간 통신 아키텍처까지, 안정적인 시스템을 설계하는 지원자입니다",
   tags: [
     "#STM32_레지스터_직접제어",
     "#논블로킹_펌웨어_아키텍처",
@@ -169,13 +169,13 @@ const SKILLS_DATA: SkillCategory[] = [
 const PROJECTS_DATA: ProjectDetail[] = [
   {
     id: "jojimara-v1",
-    title: "JOJIMARA (조지마라)",
+    title: "JOJIMARA (졸지마라)",
     subtitle: "Jetson Orin Nano와 STM32를 이용한 AI 졸음운전 자동차 관제 및 실시간 제어 시스템",
     period: "2026.09.08 ~ 2026.09.14",
-    teamAndRole: "3인 팀 프로젝트 (임베디드 펌웨어 및 하드웨어 회로 설계 전담 - 1인)",
+    teamAndRole: "3인 팀 프로젝트 (임베디드 펌웨어 및 하드웨어 회로 설계 전담)",
     contribution: "펌웨어 & 회로 설계 100% (전체 시스템 기여도 40%)",
     thumbnailPrompt: "STM32 하드웨어 설계도 및 도로주행/졸음감지 AI 실시간 카메라 관제 화면",
-    githubUrl: "https://github.com/rlagudwls5518/joji",
+    githubUrl: "https://github.com/rlagudwls5518/jojimara",
     overview: {
       background:
         "대한상공회의소 서울기술교육센터에서 진행한 프로젝트로, 주행 중 운전자의 졸음 상태 및 도로 상황(터널 진입/탈출, 차선/차량 인식)을 Edge AI(Jetson Orin Nano)로 실시간 분석하고, 즉각적으로 차량 내 액추에이터(경고 부저, 환기용 에어컨/공기청정기 모터, 다채널 경고 LED)를 정밀 제어하는 통합 관제 시스템입니다.",
@@ -198,14 +198,14 @@ const PROJECTS_DATA: ProjectDetail[] = [
       },
       {
         name: "UART Interrupt & Custom Protocol",
-        reason: "이기종 보드(Jetson-STM32) 간 명확한 명령 전달과 ACK/NACK 기반의 상태 동기화 및 디버깅 가시성 확보",
+        reason: "Jetson-STM32 간 명확한 명령 전달과 ACK/NACK 기반의 상태 동기화 및 디버깅 가시성 확보",
       },
       {
         name: "TIM Register PWM (TIM2, TIM3)",
         reason: "HAL 기본 함수의 오버헤드를 줄이고 모터 속도 제어 및 3kHz 부저 주파수/듀티비를 정밀하게 가변하기 위해 ARR/CCR 직접 조작",
       },
       {
-        name: "Jetson Orin Nano (JetPack 6.x)",
+        name: "Jetson Orin Nano (JetPack 6.23)",
         reason: "운전자 안면/시선 인식 및 도로 객체 인식을 실시간 처리하는 상위 엣지 AI 컴퓨터와의 시리얼 인터페이스 연동",
       },
       {
@@ -222,7 +222,7 @@ const PROJECTS_DATA: ProjectDetail[] = [
         comparison: {
           optionA: {
             name: "다중 if-else / switch 분기문",
-            desc: "구현은 단순하나 문자열 비교(`strcmp`)가 중첩되어 파싱 루틴이 비대해지고, 새로운 센서/액추에이터 명령 추가 시 파서 코어 로직을 매번 수정해야 함 (OCP 위배).",
+            desc: "구현은 단순하나 문자열 비교(strcmp)가 중첩되어 파싱 루틴이 비대해지고, 새로운 센서/액추에이터 명령 추가 시 파서 코어 로직을 매번 수정해야 함 (OCP 위배).",
           },
           optionB: {
             name: "CommandEntry 구조체 배열 & 함수 포인터 매핑",
@@ -230,22 +230,30 @@ const PROJECTS_DATA: ProjectDetail[] = [
             isSelected: true,
           },
           whySelected:
-            "파싱 엔진과 실제 제어 비즈니스 로직을 완벽히 분리하여, 신규 명령이 추가되더라도 `cmd_table`에 엔트리 한 줄만 추가하면 되도록 확장성을 극대화했습니다. 또한 정의되지 않은 명령 수신 시 일관되게 `NACK_INVALID_CMD` 피드백을 반환하도록 표준화했습니다.",
+            "파싱 엔진과 실제 제어 비즈니스 로직을 완벽히 분리하여, 신규 명령이 추가되더라도 cmd_table에 엔트리 한 줄만 추가하면 되도록 확장성을 극대화했습니다. 또한 정의되지 않은 명령 수신 시 일관되게 NACK_INVALID_CMD 피드백을 반환하도록 표준화했습니다.",
         },
         impact:
           "엣지 애플리케이션 담당 팀원과의 협업 시 사전 합의된 인터페이스 정의서와 1:1로 매핑되는 클린 코드를 유지했으며, 명령어 추가 및 수정 시간을 대폭 단축했습니다.",
-        codeSnippet: `typedef struct {
-    const char *cmd_str;
-    void (*handler)(const char *args);
-} CommandEntry_t;
+        codeSnippet: `typedef void (*CmdHandler)(void);
+typedef struct {
+    CommandType cmd_type;      // 명령어 Enum 타입
+    const char *cmd_str;       // 응답 문자열
+    CmdHandler handler;        // 실행할 함수 포인터
+} CommandEntry;
 
-// 확장성이 보장되는 테이블 기반 커맨드 매핑
-static const CommandEntry_t cmd_table[] = {
-    { "DROWSY_WARN", App_HandleDrowsyWarn },
-    { "TUNNEL_IN",   App_HandleTunnelIn   },
-    { "TUNNEL_OUT",  App_HandleTunnelOut  },
-    { "LANE_WARN",   App_HandleLaneWarn   },
-    // 신규 명령 추가 시 테이블 엔트리만 확장
+// 테이블 정의: 여기에 한 줄씩만 추가/수정하면 모든 로직이 자동 연동됨
+static const CommandEntry cmd_table[] = {
+    { CMD_DROWSY_WARN, "ACK_DROWSY_WARN", app_start_buzzer },
+    { CMD_DROWSY_OK,   "ACK_DROWSY_OK",   app_stop_buzzer },
+    { CMD_VENT_ON,     "ACK_VENT_ON",     app_aircon_start },
+    { CMD_WARN_CENTER, "ACK_WARN_CENTER", action_warn_center },
+    { CMD_WARN_RIGHT,  "ACK_WARN_RIGHT",  action_warn_right },
+    { CMD_WARN_LEFT,   "ACK_WARN_LEFT",   action_warn_left },
+    { CMD_CENTER_OK,   "ACK_CENTER_OK",   action_center_ok },
+    { CMD_RIGHT_OK,    "ACK_RIGHT_OK",    action_right_ok },
+    { CMD_LEFT_OK,     "ACK_LEFT_OK",     action_left_ok },
+    { CMD_WIN_CLOSE,   "ACK_WIN_CLOSE",   action_win_close },
+    { CMD_WIN_OPEN,    "ACK_WIN_OPEN",    action_win_open },
 };`,
       },
       {
@@ -256,11 +264,11 @@ static const CommandEntry_t cmd_table[] = {
         comparison: {
           optionA: {
             name: "액추에이터별 개별 함수 및 전역 변수 나열",
-            desc: "`Motor1_On()`, `Motor2_On()`, `LED_Left_Toggle()` 등 하드웨어 채널별로 함수를 중복 작성하여 상태 동기화가 복잡해짐.",
+            desc: "Motor1_On(), Motor2_On(), LED_Left_Toggle() 등 하드웨어 채널별로 함수를 중복 작성하여 상태 동기화가 복잡해짐.",
           },
           optionB: {
             name: "DCMotor_t 구조체 캡슐화 & 비트마스크(target_led) 연산",
-            desc: "제어 핀과 TIM2 채널 정보를 `DCMotor_t` 구조체로 추상화하여 단일 드라이버 코드로 다중 모터를 제어하고, LED는 비트마스크(`target_led`)로 다중 상태를 단일 변수에서 동시 관리.",
+            desc: "제어 핀과 TIM2 채널 정보를 DCMotor_t 구조체로 추상화하여 단일 드라이버 코드로 다중 모터를 제어하고, LED는 비트마스크(target_led)로 다중 상태를 단일 변수에서 동시 관리.",
             isSelected: true,
           },
           whySelected:
@@ -269,18 +277,18 @@ static const CommandEntry_t cmd_table[] = {
         impact:
           "단일 드라이버 로직으로 2개의 모터를 완벽히 제어하고(에어컨 10초 자동 OFF 포함), 메인 루프 방해 없이 백그라운드 인터럽트에서 다채널 LED의 동시 점멸 동기화를 달성했습니다.",
         codeSnippet: `typedef struct {
-    GPIO_TypeDef *port;
-    uint16_t pin;
-    volatile uint32_t *ccr_reg; // TIM2 CCR 레지스터 직접 포인팅
-    uint32_t auto_off_tick;     // 논블로킹 10초 자동 종료 틱
-    uint8_t is_running;
+    GPIO_TypeDef *dir_port;
+    uint8_t pin_in1;
+    uint8_t pin_in2;
+    volatile uint32_t *ccr;
 } DCMotor_t;
 
-// 비트마스크를 통한 다중 채널 LED 동시 상태 제어
-#define LED_LEFT   (1 << 0)
-#define LED_CENTER (1 << 1)
-#define LED_RIGHT  (1 << 2)
-volatile uint8_t target_led_mask = 0x00;`,
+typedef enum {
+   CENTER = (1 << 0),
+   RIGHT = (1 << 1),
+   LEFT = (1 << 2),
+   NONE = 0
+} LED_STATE;`,
       },
     ],
     troubleshooting: [
@@ -290,8 +298,8 @@ volatile uint8_t target_led_mask = 0x00;`,
         issue:
           "Jetson Orin Nano에서 졸음 감지(`DROWSY_WARN`) 등의 명령을 송신한 후 STM32의 응답(`ACK`)을 대기할 때 간헐적으로 수신 타임아웃이 발생하여, 상위 관제 시스템의 상태 동기화가 실패하고 차량 안전 경보 시퀀스가 지연되는 현상이 발생했습니다.",
         rootCause: [
-          "초기 STM32 펌웨어 내 액추에이터(부저 250ms 단속음 비프 패턴, 모터 10초 구동 유지 등) 제어 로직에 블로킹 방식의 지연 함수(`HAL_Delay`)가 사용됨.",
-          "지연 함수가 수행되는 동안 CPU 점유가 독점되면서, 그 사이에 들어오는 Jetson의 상태 질의 및 연속 명령에 대해 즉각적인 패킷 파싱과 `ACKOK` 전송 타이밍을 충족하지 못함.",
+          "초기 STM32 펌웨어 내 액추에이터(부저 250ms 단속음 비프 패턴, 모터 10초 구동 유지 등) 제어 로직에 블로킹 방식의 지연 함수(Delay)가 사용됨.",
+          "지연 함수가 수행되는 동안 CPU 점유가 독점되면서, 그 사이에 들어오는 Jetson의 상태 질의 및 연속 명령에 대해 즉각적인 패킷 파싱과 ACKOK 전송 타이밍을 충족하지 못함.",
         ],
         logOrCode: `// [Before] 블로킹 제어로 인해 CPU가 독점되어 UART 응답 지연 발생
 void Buzzer_Alert_Blocking(void) {
