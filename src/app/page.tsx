@@ -168,6 +168,240 @@ const SKILLS_DATA: SkillCategory[] = [
 
 const PROJECTS_DATA: ProjectDetail[] = [
   {
+    id: "project-1", // 프로젝트마다 겹치지 않는 고유 ID (예: "smart-factory-v1")
+    title: "새 프로젝트 제목",
+    subtitle: "프로젝트를 한 줄로 요약하는 서브 타이틀",
+    period: "2026.10.01 ~ 2026.10.20",
+    teamAndRole: "N인 팀 프로젝트 (본인이 맡은 핵심 역할)",
+    contribution: "담당 파트 100% (전체 기여도 N%)",
+    thumbnailPrompt: "썸네일 영역 대체 텍스트 설명",
+    githubUrl: "https://github.com/rlagudwls5518/저장소이름",
+    
+
+    overview: {
+      background:
+        "이 프로젝트를 시작하게 된 배경과 어떤 시스템인지 2~3문장으로 적어주세요.",
+      goals: [
+        "핵심 목표 1",
+        "핵심 목표 2",
+        "핵심 목표 3",
+      ],
+      myContributions: [
+        "내가 직접 구현한 핵심 기능 1",
+        "내가 직접 구현한 핵심 기능 2",
+        "내가 직접 구현한 핵심 기능 3",
+      ],
+    },
+
+    techStack: [
+      {
+        name: "사용 기술 1 (예: FreeRTOS / STM32)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+      {
+        name: "사용 기술 2 (예: CAN / SPI 통신)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+    ],
+
+    designDecisions: [
+      {
+        id: "p2-arch-1",
+        title: "설계 고민 제목 (예: 폴링 대신 인터럽트/DMA 링버퍼 도입)",
+        problem: "구현 전 마주했던 구조적 한계나 고민했던 지점",
+        comparison: {
+          optionA: {
+            name: "방식 A (기존/단순한 방식)",
+            desc: "방식 A의 특징과 한계점",
+          },
+          optionB: {
+            name: "방식 B (내가 최종 선택한 아키텍처)",
+            desc: "방식 B의 구조와 동작 방식",
+            isSelected: true,
+          },
+          whySelected: "방식 A 대신 방식 B를 채택한 결정적인 기술적 이유",
+        },
+        impact: "이 설계를 통해 얻은 유지보수성/성능/협업 측면의 긍정적 결과",
+        codeSnippet: `// 핵심 설계 코드 스니펫 (없으면 이 줄을 지우셔도 됩니다)
+void Example_Init(void) {
+    // 코드 작성
+}`,
+      },
+    ],
+
+    troubleshooting: [
+      {
+        id: "p2-ts-1",
+        title: "[트러블슈팅 1] 해결한 문제 제목",
+        issue: "발생했던 버그, 통신 오류, 또는 성능 병목 현상 설명",
+        rootCause: [
+          "원인 분석 1단계 (예: 로그/레지스터 확인)",
+          "원인 분석 2단계 (예: 오실로스코프/디버거 측정 결과)",
+          "파악한 근본 원인 요약",
+        ],
+        logOrCode: `// 문제 상황 로그 또는 해결 전후 비교 코드 (없으면 지우셔도 됩니다)`,
+        solution: "문제를 해결하기 위해 적용한 구체적인 방법",
+        learned: "해결 후 개선된 수치(예: 응답속도 개선, 에러율 0%) 및 배운 점",
+      },
+    ],
+  }, // 최종 프로젝트
+  {
+    id: "project-2", // 프로젝트마다 겹치지 않는 고유 ID (예: "smart-factory-v1")
+    title: "새 프로젝트 제목",
+    subtitle: "프로젝트를 한 줄로 요약하는 서브 타이틀",
+    period: "2026.10.01 ~ 2026.10.20",
+    teamAndRole: "N인 팀 프로젝트 (본인이 맡은 핵심 역할)",
+    contribution: "담당 파트 100% (전체 기여도 N%)",
+    thumbnailPrompt: "썸네일 영역 대체 텍스트 설명",
+    githubUrl: "https://github.com/rlagudwls5518/저장소이름",
+    
+
+    overview: {
+      background:
+        "이 프로젝트를 시작하게 된 배경과 어떤 시스템인지 2~3문장으로 적어주세요.",
+      goals: [
+        "핵심 목표 1",
+        "핵심 목표 2",
+        "핵심 목표 3",
+      ],
+      myContributions: [
+        "내가 직접 구현한 핵심 기능 1",
+        "내가 직접 구현한 핵심 기능 2",
+        "내가 직접 구현한 핵심 기능 3",
+      ],
+    },
+
+    techStack: [
+      {
+        name: "사용 기술 1 (예: FreeRTOS / STM32)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+      {
+        name: "사용 기술 2 (예: CAN / SPI 통신)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+    ],
+
+    designDecisions: [
+      {
+        id: "p2-arch-1",
+        title: "설계 고민 제목 (예: 폴링 대신 인터럽트/DMA 링버퍼 도입)",
+        problem: "구현 전 마주했던 구조적 한계나 고민했던 지점",
+        comparison: {
+          optionA: {
+            name: "방식 A (기존/단순한 방식)",
+            desc: "방식 A의 특징과 한계점",
+          },
+          optionB: {
+            name: "방식 B (내가 최종 선택한 아키텍처)",
+            desc: "방식 B의 구조와 동작 방식",
+            isSelected: true,
+          },
+          whySelected: "방식 A 대신 방식 B를 채택한 결정적인 기술적 이유",
+        },
+        impact: "이 설계를 통해 얻은 유지보수성/성능/협업 측면의 긍정적 결과",
+        codeSnippet: `// 핵심 설계 코드 스니펫 (없으면 이 줄을 지우셔도 됩니다)
+void Example_Init(void) {
+    // 코드 작성
+}`,
+      },
+    ],
+
+    troubleshooting: [
+      {
+        id: "p2-ts-1",
+        title: "[트러블슈팅 1] 해결한 문제 제목",
+        issue: "발생했던 버그, 통신 오류, 또는 성능 병목 현상 설명",
+        rootCause: [
+          "원인 분석 1단계 (예: 로그/레지스터 확인)",
+          "원인 분석 2단계 (예: 오실로스코프/디버거 측정 결과)",
+          "파악한 근본 원인 요약",
+        ],
+        logOrCode: `// 문제 상황 로그 또는 해결 전후 비교 코드 (없으면 지우셔도 됩니다)`,
+        solution: "문제를 해결하기 위해 적용한 구체적인 방법",
+        learned: "해결 후 개선된 수치(예: 응답속도 개선, 에러율 0%) 및 배운 점",
+      },
+    ],
+  }, // FPGA 공조기 구현  
+  {
+    id: "project-3", // 프로젝트마다 겹치지 않는 고유 ID (예: "smart-factory-v1")
+    title: "새 프로젝트 제목",
+    subtitle: "프로젝트를 한 줄로 요약하는 서브 타이틀",
+    period: "2026.10.01 ~ 2026.10.20",
+    teamAndRole: "N인 팀 프로젝트 (본인이 맡은 핵심 역할)",
+    contribution: "담당 파트 100% (전체 기여도 N%)",
+    thumbnailPrompt: "썸네일 영역 대체 텍스트 설명",
+    githubUrl: "https://github.com/rlagudwls5518/저장소이름",
+    
+
+    overview: {
+      background:
+        "이 프로젝트를 시작하게 된 배경과 어떤 시스템인지 2~3문장으로 적어주세요.",
+      goals: [
+        "핵심 목표 1",
+        "핵심 목표 2",
+        "핵심 목표 3",
+      ],
+      myContributions: [
+        "내가 직접 구현한 핵심 기능 1",
+        "내가 직접 구현한 핵심 기능 2",
+        "내가 직접 구현한 핵심 기능 3",
+      ],
+    },
+
+    techStack: [
+      {
+        name: "사용 기술 1 (예: FreeRTOS / STM32)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+      {
+        name: "사용 기술 2 (예: CAN / SPI 통신)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+    ],
+
+    designDecisions: [
+      {
+        id: "p2-arch-1",
+        title: "설계 고민 제목 (예: 폴링 대신 인터럽트/DMA 링버퍼 도입)",
+        problem: "구현 전 마주했던 구조적 한계나 고민했던 지점",
+        comparison: {
+          optionA: {
+            name: "방식 A (기존/단순한 방식)",
+            desc: "방식 A의 특징과 한계점",
+          },
+          optionB: {
+            name: "방식 B (내가 최종 선택한 아키텍처)",
+            desc: "방식 B의 구조와 동작 방식",
+            isSelected: true,
+          },
+          whySelected: "방식 A 대신 방식 B를 채택한 결정적인 기술적 이유",
+        },
+        impact: "이 설계를 통해 얻은 유지보수성/성능/협업 측면의 긍정적 결과",
+        codeSnippet: `// 핵심 설계 코드 스니펫 (없으면 이 줄을 지우셔도 됩니다)
+void Example_Init(void) {
+    // 코드 작성
+}`,
+      },
+    ],
+
+    troubleshooting: [
+      {
+        id: "p2-ts-1",
+        title: "[트러블슈팅 1] 해결한 문제 제목",
+        issue: "발생했던 버그, 통신 오류, 또는 성능 병목 현상 설명",
+        rootCause: [
+          "원인 분석 1단계 (예: 로그/레지스터 확인)",
+          "원인 분석 2단계 (예: 오실로스코프/디버거 측정 결과)",
+          "파악한 근본 원인 요약",
+        ],
+        logOrCode: `// 문제 상황 로그 또는 해결 전후 비교 코드 (없으면 지우셔도 됩니다)`,
+        solution: "문제를 해결하기 위해 적용한 구체적인 방법",
+        learned: "해결 후 개선된 수치(예: 응답속도 개선, 에러율 0%) 및 배운 점",
+      },
+    ],
+  }, // 선풍기 리눅스 드라이버 
+  {
     id: "jojimara-v1",
     title: "JOJIMARA (졸지마라)",
     subtitle: "Jetson Orin Nano와 STM32를 이용한 AI 졸음운전 자동차 관제 및 실시간 제어 시스템",
@@ -347,7 +581,163 @@ Sep 14 17:07:13 ubuntu kernel: tegra-mc 2c00000.memory-controller: unknown: secu
           "`0x00` 덮어쓰기 및 패킷 깨짐 현상을 100% 해결하고, 115200 bps 환경에서 장문 패킷의 완벽한 데이터 무결성을 확보했습니다. 특히 문제가 발생했을 때 막연한 추측이 아닌 'SW 코드 → 오실로스코프 파형 측정 → OS 커널 로그 분석'으로 이어지는 계층적 디버깅 방법론의 강력한 위력을 입증한 경험이었습니다.",
       },
     ],
-  },
+  }, // 졸지마라
+  {
+    id: "project-4", // 프로젝트마다 겹치지 않는 고유 ID (예: "smart-factory-v1")
+    title: "새 프로젝트 제목",
+    subtitle: "프로젝트를 한 줄로 요약하는 서브 타이틀",
+    period: "2026.10.01 ~ 2026.10.20",
+    teamAndRole: "N인 팀 프로젝트 (본인이 맡은 핵심 역할)",
+    contribution: "담당 파트 100% (전체 기여도 N%)",
+    thumbnailPrompt: "썸네일 영역 대체 텍스트 설명",
+    githubUrl: "https://github.com/rlagudwls5518/저장소이름",
+    
+
+    overview: {
+      background:
+        "이 프로젝트를 시작하게 된 배경과 어떤 시스템인지 2~3문장으로 적어주세요.",
+      goals: [
+        "핵심 목표 1",
+        "핵심 목표 2",
+        "핵심 목표 3",
+      ],
+      myContributions: [
+        "내가 직접 구현한 핵심 기능 1",
+        "내가 직접 구현한 핵심 기능 2",
+        "내가 직접 구현한 핵심 기능 3",
+      ],
+    },
+
+    techStack: [
+      {
+        name: "사용 기술 1 (예: FreeRTOS / STM32)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+      {
+        name: "사용 기술 2 (예: CAN / SPI 통신)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+    ],
+
+    designDecisions: [
+      {
+        id: "p2-arch-1",
+        title: "설계 고민 제목 (예: 폴링 대신 인터럽트/DMA 링버퍼 도입)",
+        problem: "구현 전 마주했던 구조적 한계나 고민했던 지점",
+        comparison: {
+          optionA: {
+            name: "방식 A (기존/단순한 방식)",
+            desc: "방식 A의 특징과 한계점",
+          },
+          optionB: {
+            name: "방식 B (내가 최종 선택한 아키텍처)",
+            desc: "방식 B의 구조와 동작 방식",
+            isSelected: true,
+          },
+          whySelected: "방식 A 대신 방식 B를 채택한 결정적인 기술적 이유",
+        },
+        impact: "이 설계를 통해 얻은 유지보수성/성능/협업 측면의 긍정적 결과",
+        codeSnippet: `// 핵심 설계 코드 스니펫 (없으면 이 줄을 지우셔도 됩니다)
+void Example_Init(void) {
+    // 코드 작성
+}`,
+      },
+    ],
+
+    troubleshooting: [
+      {
+        id: "p2-ts-1",
+        title: "[트러블슈팅 1] 해결한 문제 제목",
+        issue: "발생했던 버그, 통신 오류, 또는 성능 병목 현상 설명",
+        rootCause: [
+          "원인 분석 1단계 (예: 로그/레지스터 확인)",
+          "원인 분석 2단계 (예: 오실로스코프/디버거 측정 결과)",
+          "파악한 근본 원인 요약",
+        ],
+        logOrCode: `// 문제 상황 로그 또는 해결 전후 비교 코드 (없으면 지우셔도 됩니다)`,
+        solution: "문제를 해결하기 위해 적용한 구체적인 방법",
+        learned: "해결 후 개선된 수치(예: 응답속도 개선, 에러율 0%) 및 배운 점",
+      },
+    ],
+  }, // 모터 제어 프로젝트
+  {
+    id: "project-5", // 프로젝트마다 겹치지 않는 고유 ID (예: "smart-factory-v1")
+    title: "새 프로젝트 제목",
+    subtitle: "프로젝트를 한 줄로 요약하는 서브 타이틀",
+    period: "2026.10.01 ~ 2026.10.20",
+    teamAndRole: "N인 팀 프로젝트 (본인이 맡은 핵심 역할)",
+    contribution: "담당 파트 100% (전체 기여도 N%)",
+    thumbnailPrompt: "썸네일 영역 대체 텍스트 설명",
+    githubUrl: "https://github.com/rlagudwls5518/저장소이름",
+    
+
+    overview: {
+      background:
+        "이 프로젝트를 시작하게 된 배경과 어떤 시스템인지 2~3문장으로 적어주세요.",
+      goals: [
+        "핵심 목표 1",
+        "핵심 목표 2",
+        "핵심 목표 3",
+      ],
+      myContributions: [
+        "내가 직접 구현한 핵심 기능 1",
+        "내가 직접 구현한 핵심 기능 2",
+        "내가 직접 구현한 핵심 기능 3",
+      ],
+    },
+
+    techStack: [
+      {
+        name: "사용 기술 1 (예: FreeRTOS / STM32)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+      {
+        name: "사용 기술 2 (예: CAN / SPI 통신)",
+        reason: "이 기술을 왜 선택했는지 한 줄 이유",
+      },
+    ],
+
+    designDecisions: [
+      {
+        id: "p2-arch-1",
+        title: "설계 고민 제목 (예: 폴링 대신 인터럽트/DMA 링버퍼 도입)",
+        problem: "구현 전 마주했던 구조적 한계나 고민했던 지점",
+        comparison: {
+          optionA: {
+            name: "방식 A (기존/단순한 방식)",
+            desc: "방식 A의 특징과 한계점",
+          },
+          optionB: {
+            name: "방식 B (내가 최종 선택한 아키텍처)",
+            desc: "방식 B의 구조와 동작 방식",
+            isSelected: true,
+          },
+          whySelected: "방식 A 대신 방식 B를 채택한 결정적인 기술적 이유",
+        },
+        impact: "이 설계를 통해 얻은 유지보수성/성능/협업 측면의 긍정적 결과",
+        codeSnippet: `// 핵심 설계 코드 스니펫 (없으면 이 줄을 지우셔도 됩니다)
+void Example_Init(void) {
+    // 코드 작성
+}`,
+      },
+    ],
+
+    troubleshooting: [
+      {
+        id: "p2-ts-1",
+        title: "[트러블슈팅 1] 해결한 문제 제목",
+        issue: "발생했던 버그, 통신 오류, 또는 성능 병목 현상 설명",
+        rootCause: [
+          "원인 분석 1단계 (예: 로그/레지스터 확인)",
+          "원인 분석 2단계 (예: 오실로스코프/디버거 측정 결과)",
+          "파악한 근본 원인 요약",
+        ],
+        logOrCode: `// 문제 상황 로그 또는 해결 전후 비교 코드 (없으면 지우셔도 됩니다)`,
+        solution: "문제를 해결하기 위해 적용한 구체적인 방법",
+        learned: "해결 후 개선된 수치(예: 응답속도 개선, 에러율 0%) 및 배운 점",
+      },
+    ],
+  }, // Qt 주차장 관제 시스템
 ];
 
 // ============================================================================
