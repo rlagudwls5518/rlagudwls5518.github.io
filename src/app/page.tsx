@@ -532,7 +532,7 @@ void *sensor_worker_thread(void *arg) {
     teamAndRole: "3인 팀 프로젝트 (임베디드 펌웨어 및 하드웨어 회로 설계 전담)",
     contribution: "펌웨어 & 회로 설계 100% (전체 시스템 기여도 40%)",
     thumbnailPrompt: "STM32 하드웨어 설계도 및 도로주행/졸음감지 AI 실시간 카메라 관제 화면",
-    thumbnailUrl: "/public/jojimara_hw.png",
+    //thumbnailUrl: "/public/jojimara_hw.png",
     thumbnailTheme: "indigo",
     thumbnailBadgeLeft: "DROWSINESS ALERT! WAKE UP!",
     thumbnailBadgeRight: "UART 115200bps ACK_OK",
@@ -1396,6 +1396,55 @@ const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                 })}
               </div>
             </section>
+            
+            {/* 5. 프로젝트 최종 보고서 PDF 내장 뷰어 (스크롤 열람 지원) */}
+            {project.reportPdfUrl && (
+              <section aria-labelledby="section-pdf-report">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <FileText
+                      className="w-5 h-5 text-indigo-600 dark:text-indigo-400"
+                      aria-hidden="true"
+                    />
+                    <h3 id="section-pdf-report" className="text-lg font-bold">
+                      4. 프로젝트 최종 보고서 / 발표 자료 (PDF)
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={project.reportPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>새 창으로 크게 보기</span>
+                    </a>
+                    <a
+                      href={project.reportPdfUrl}
+                      download
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+                    >
+                      <FileDown className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>PDF 다운로드</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* 내장 PDF 스크롤 컨테이너 */}
+                <div className="w-full h-[600px] rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-inner">
+                  <iframe
+                    src={`${project.reportPdfUrl}#view=FitH`}
+                    title={`${project.title} 최종 보고서 PDF 뷰어`}
+                    className="w-full h-full border-0"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 text-right">
+                  * 모바일 환경 등 브라우저에 따라 내장 뷰어가 보이지 않을 경우 우측 상단의 &lsquo;새 창으로 크게 보기&rsquo;를 눌러주세요.
+                </p>
+              </section>
+            )}
           </div>
 
           {/* 5. 모달 푸터 */}
