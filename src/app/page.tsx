@@ -203,6 +203,7 @@ const PROJECTS_DATA: ProjectDetail[] = [
     thumbnailFooterLeft: "SocketCAN / Device Tree",
     thumbnailFooterRight: "Deterministic RTOS Task",
     githubUrl: "https://github.com/rlagudwls5518",
+    reportPdfUrl: "",
     overview: {
       background:
         "단일 MCU 제어의 한계를 넘어 실제 차량 전장 환경과 유사하게 상위 제어기(Jetson Orin Nano)와 다수의 하위 제어기(STM32)를 CAN 버스와 고속 UART DMA로 연결한 분산 제어 시스템입니다.",
@@ -299,6 +300,7 @@ void CAN_Rx_IRQHandler(void) {
     thumbnailFooterLeft: "PWM Motor & Buzzer",
     thumbnailFooterRight: "Zero-CPU Hardware Parallelism",
     githubUrl: "https://github.com/rlagudwls5518",
+    reportPdfUrl: "",
     overview: {
       background:
         "소프트웨어(CPU) 개입 없이 순수 디지털 논리 회로(Verilog HDL)만으로 실시간 시계(RTC), 온습도/센서 데이터 수집, DC 팬 모터 PWM 제어, FND 디스플레이 및 UART 통신을 병렬 처리하는 하드웨어 공조기 시스템입니다.",
@@ -416,6 +418,7 @@ endcase`,
     thumbnailFooterLeft: "Single-Mutex State Snapshot",
     thumbnailFooterRight: "Unified Cross Makefile",
     githubUrl: "https://github.com/rlagudwls5518",
+    reportPdfUrl: "",
     overview: {
       background:
         "Jetson Orin Nano 리눅스 환경에서 하드웨어 제어용 커널 디바이스 드라이버 모듈과 유저 공간 멀티스레드 제어 애플리케이션을 분리 설계하여, 사용자 입력·타이머·센서 데이터를 동시에 처리하는 스마트 선풍기 시스템입니다.",
@@ -732,6 +735,7 @@ Sep 14 17:07:13 ubuntu kernel: tegra-mc 2c00000.memory-controller: unknown: secu
     thumbnailFooterLeft: "1-Sec Stop Interlock",
     thumbnailFooterRight: "32-bit TIM2 / PWM Control",
     githubUrl: "https://github.com/rlagudwls5518",
+    reportPdfUrl: "",
     overview: {
       background:
         "고수준 라이브러리(HAL)가 내부적으로 어떻게 하드웨어를 구동하는지 밑바닥(First-principles)부터 파악하기 위해, 데이터시트와 레퍼런스 매뉴얼을 기반으로 클럭(RCC), GPIO, 타이머(TIM) 레지스터를 직접 조작하여 구현한 양방향 DC 모터 제어 시스템입니다.",
@@ -838,6 +842,7 @@ void Motor_UpdateStateMachine_1ms(void) {
     thumbnailFooterLeft: "Servo Barrier & Slot Tracking",
     thumbnailFooterRight: "Real-time State Sync",
     githubUrl: "https://github.com/rlagudwls5518",
+    reportPdfUrl: "",
     overview: {
       background:
         "차량 입출차 감지부터 차단기(서보모터) 개폐, 주차 슬롯별 점유 상태 추적, 안내 LED 표시까지 하위 하드웨어(STM32)에서 실시간 처리하고, 이를 상위 PC 관제 프로그램(Qt C++ GUI)과 UART 통신으로 양방향 동기화하는 스마트 주차 타워 시스템입니다.",
