@@ -541,7 +541,7 @@ void *sensor_worker_thread(void *arg) {
     thumbnailFooterLeft: "TIM2/TIM3 PWM Control",
     thumbnailFooterRight: "1ms Non-blocking ISR",
     githubUrl: "https://github.com/rlagudwls5518/jojimara",
-    reportPdfUrl: "/public/jojimara/jojimara.pdf",
+    reportPdfUrl: "/jojimara/jojimara.pdf",
     overview: {
       background:
         "대한상공회의소 서울기술교육센터에서 진행한 프로젝트로, 주행 중 운전자의 졸음 상태 및 도로 상황(터널 진입/탈출, 차선/차량 인식)을 Edge AI(Jetson Orin Nano)로 실시간 분석하고, 즉각적으로 차량 내 액추에이터(경고 부저, 환기용 에어컨/공기청정기 모터, 다채널 경고 LED)를 정밀 제어하는 통합 관제 시스템입니다.",
@@ -1396,7 +1396,7 @@ const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                 })}
               </div>
             </section>
-            
+
             {/* 5. 프로젝트 최종 보고서 PDF 내장 뷰어 (스크롤 열람 지원) */}
             {project.reportPdfUrl && (
               <section aria-labelledby="section-pdf-report">
