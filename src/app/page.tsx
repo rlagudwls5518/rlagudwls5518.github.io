@@ -24,6 +24,7 @@ import {
   Terminal,
   FileDown,
   ChevronDown,
+  FileText,
 } from "lucide-react";
 
 // ============================================================================
@@ -76,6 +77,7 @@ export interface ProjectDetail {
   thumbnailFooterRight?: string;
   githubUrl: string;
   demoUrl?: string;
+  reportPdfUrl: string;
   overview: {
     background: string;
     goals: string[];
@@ -100,7 +102,7 @@ const DEVELOPER_INFO = {
   name: "김형진",
   role: "Embedded Firmware & Edge System Developer",
   oneLiner:
-    "하드웨어 레지스터 레벨의 정밀한 제어부터 Linux 커널 드라이버 및 Edge AI 실시간 통신 아키텍처까지, 안정적인 시스템을 설계하는 개발자입니다.",
+    "하드웨어 레지스터 레벨의 정밀한 제어부터 Linux 커널 드라이버 및 통신 아키텍처까지, 안정적인 시스템을 만드려고 노력하는 지원자입니다.",
   tags: [
     "#STM32_레지스터_직접제어",
     "#Linux_Device_Driver",
@@ -186,7 +188,7 @@ const PROJECTS_DATA: ProjectDetail[] = [
   // --------------------------------------------------------------------------
   {
     id: "project-1-final",
-    title: "분산형 전장 제어 및 엣지 통합 관제 시스템 (최종 프로젝트)",
+    title: "미정 (최종 프로젝트)",
     subtitle: "Yocto Linux 기반 Jetson Orin Nano와 다중 STM32(FreeRTOS) 노드를 연동한 CAN/UART 전장 아키텍처",
     period: "2026.10 ~ 2026.11 (진행 중)",
     teamAndRole: "4인 팀 프로젝트 (임베디드 펌웨어 아키텍처, RTOS 태스크 설계 및 통신 인터페이스 담당)",
@@ -203,7 +205,7 @@ const PROJECTS_DATA: ProjectDetail[] = [
     githubUrl: "https://github.com/rlagudwls5518",
     overview: {
       background:
-        "단일 MCU 제어의 한계를 넘어 실제 차량 전장(Automotive) 환경과 유사하게 상위 Edge AI 제어기(Jetson Orin Nano)와 다수의 하위 제어기(STM32)를 CAN 버스와 고속 UART DMA로 연결한 분산 제어 시스템입니다.",
+        "단일 MCU 제어의 한계를 넘어 실제 차량 전장 환경과 유사하게 상위 제어기(Jetson Orin Nano)와 다수의 하위 제어기(STM32)를 CAN 버스와 고속 UART DMA로 연결한 분산 제어 시스템입니다.",
       goals: [
         "Yocto Project 기반 커스텀 리눅스 이미지 구축 및 전장 통신 인터페이스(CAN/UART) 최적화",
         "STM32 내 FreeRTOS 도입을 통한 센서 수집·통신 파싱·액추에이터 제어 태스크의 실시간 결정성(Determinism) 확보",
@@ -262,17 +264,17 @@ void CAN_Rx_IRQHandler(void) {
     troubleshooting: [
       {
         id: "p1-ts-1",
-        title: "[트러블슈팅] 고빈도 패킷 수신 시 인터럽트 오버헤드 완화 (DMA + Idle Interrupt)",
+        title: "[트러블슈팅] 미정",
         issue:
-          "바이트 단위 수신 인터럽트(RXNE)만 사용할 경우, 고속·연속 패킷 유입 시 컨텍스트 스위칭이 과도하게 발생하여 제어 태스크의 CPU 점유율이 저하되는 현상을 사전 방지해야 했습니다.",
+          "미정",
         rootCause: [
-          "115200bps 이상에서 매 바이트마다 ISR이 호출되면 수십 마이크로초마다 CPU가 선점됨.",
-          "가변 길이 프레임 특성상 고정 크기 DMA만으로는 프레임의 끝을 즉각 알기 어려움.",
+          "미정",
+          "미정",
         ],
         solution:
-          "UART DMA Circular 버퍼와 UART IDLE Line 인터럽트를 결합하여, 패킷이 들어오는 동안에는 CPU 개입 없이 메모리에 적재하고 라인이 유휴 상태가 되는 프레임 종료 시점에 단 한 번만 인터럽트가 발생하도록 설계했습니다.",
+          "미정",
         learned:
-          "인터럽트 호출 횟수를 바이트 수 대비 1/N(프레임당 1회)로 줄여 CPU 부하를 대폭 절감하고 실시간 제어 여유분을 확보했습니다.",
+          "미정",
       },
     ],
   },
@@ -416,16 +418,16 @@ endcase`,
     githubUrl: "https://github.com/rlagudwls5518",
     overview: {
       background:
-        "Jetson Orin Nano 리눅스 환경에서 하드웨어 제어용 커널 디바이스 드라이버 모듈(`.ko`)과 유저 공간(User-space) 멀티스레드 제어 애플리케이션을 분리 설계하여, 사용자 입력·타이머·센서 데이터를 동시에 처리하는 스마트 선풍기 시스템입니다.",
+        "Jetson Orin Nano 리눅스 환경에서 하드웨어 제어용 커널 디바이스 드라이버 모듈과 유저 공간 멀티스레드 제어 애플리케이션을 분리 설계하여, 사용자 입력·타이머·센서 데이터를 동시에 처리하는 스마트 선풍기 시스템입니다.",
       goals: [
-        "커널 디바이스 드라이버(`open/read/write/ioctl`)와 유저 애플리케이션 간의 깔끔한 계층 분리(`fan_api.h` 추상화)",
-        "입력(Input), 타이머(Timer), 센서(Sensor) 3개의 워커 스레드가 동시에 동작할 때 데드락 및 레이스 컨디션 완벽 방지",
+        "커널 디바이스 드라이버와 유저 애플리케이션 간의 깔끔한 계층 분리(fan_api.h 추상화)",
+        "입력, 타이머, 센서 3개의 워커 스레드가 동시에 동작할 때 데드락 및 레이스 컨디션 완벽 방지",
         "커널 모듈과 유저 애플리케이션을 단일 명령어로 빌드하는 통합 Makefile 구축",
       ],
       myContributions: [
-        "전체 유저 공간 애플리케이션 아키텍처 설계 및 3개 워커 스레드(`input`, `timer`, `sensor`) 제어 로직 구현",
-        "저수준 파일 디스크립터 및 시스템 콜을 캡슐화한 `fan_api.h` 하드웨어 추상화 인터페이스 정의",
-        "공유 상태를 `SystemContext` 구조체로 통합하고 단일 뮤텍스(`g_state_lock`) 스냅샷 패턴으로 동시성 이슈 해결",
+        "전체 유저 공간 애플리케이션 아키텍처 설계 및 3개 워커 스레드(input, timer, sensor) 제어 로직 구현",
+        "저수준 파일 디스크립터 및 시스템 콜을 캡슐화한 fan_api.h 하드웨어 추상화 인터페이스 정의",
+        "공유 상태를 SystemContext 구조체로 통합하고 단일 뮤텍스(g_state_lock) 스냅샷 패턴으로 동시성 이슈 해결",
         "커널 모듈과 C 애플리케이션을 한 번에 빌드/클린하는 통합 Makefile 작성",
       ],
     },
@@ -527,7 +529,7 @@ void *sensor_worker_thread(void *arg) {
     teamAndRole: "3인 팀 프로젝트 (임베디드 펌웨어 및 하드웨어 회로 설계 전담)",
     contribution: "펌웨어 & 회로 설계 100% (전체 시스템 기여도 40%)",
     thumbnailPrompt: "STM32 하드웨어 설계도 및 도로주행/졸음감지 AI 실시간 카메라 관제 화면",
-    // thumbnailUrl: "/jojimara.png",
+    thumbnailUrl: "/public/jojimara_hw.png",
     thumbnailTheme: "indigo",
     thumbnailBadgeLeft: "DROWSINESS ALERT! WAKE UP!",
     thumbnailBadgeRight: "UART 115200bps ACK_OK",
@@ -536,6 +538,7 @@ void *sensor_worker_thread(void *arg) {
     thumbnailFooterLeft: "TIM2/TIM3 PWM Control",
     thumbnailFooterRight: "1ms Non-blocking ISR",
     githubUrl: "https://github.com/rlagudwls5518/jojimara",
+    reportPdfUrl: "/public/jojimara/jojimara.pdf",
     overview: {
       background:
         "대한상공회의소 서울기술교육센터에서 진행한 프로젝트로, 주행 중 운전자의 졸음 상태 및 도로 상황(터널 진입/탈출, 차선/차량 인식)을 Edge AI(Jetson Orin Nano)로 실시간 분석하고, 즉각적으로 차량 내 액추에이터(경고 부저, 환기용 에어컨/공기청정기 모터, 다채널 경고 LED)를 정밀 제어하는 통합 관제 시스템입니다.",
