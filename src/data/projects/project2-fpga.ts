@@ -6,7 +6,7 @@ export const project2Fpga: ProjectDetail = {
   subtitle: "Digilent Basys 3 FPGA와 Verilog HDL을 활용한 하드웨어 레벨 전자레인지 시스템",
   period: "2026.10",
   teamAndRole: "개인 설계 프로젝트 (Verilog RTL 모듈 설계, FSM 제어기 및 합성/검증)",
-  contribution: "RTL 모듈 설계 및 하드웨어 통합 검증 100%",
+  contribution: "RTL 모듈 설계 및 하드웨어 통합 검증 100%(개인프로젝트)",
   thumbnailPrompt: "Basys 3 FPGA 보드 기반 Verilog HDL 전자렌지 회로 및 동작",
   // thumbnailUrl: "/fpga-hvac.png",
   thumbnailTheme: "cyan",
@@ -62,20 +62,38 @@ export const project2Fpga: ProjectDetail = {
       impact:
         "각 기능 모듈(FND, PWM, Buzzer, Rotary)을 독립적으로 시뮬레이션 검증한 뒤 Top 모듈에서 배선만으로 깔끔하게 통합할 수 있었습니다.",
       codeSnippet: `// 1. 순차 회로: 클럭 엣지에 동기화된 상태 레지스터 업데이트
-always @(posedge i_clk or posedge i_reset) begin
-    if (i_reset) r_curr_state <= S_IDLE;
-    else         r_curr_state <= r_next_state;
-end
+always @(posedge clk or posedge reset) begin
+        if(reset) r_curr_state <= S_IDLE;
+        else      r_curr_state <= r_next_state;
+    end
 
 // 2. 조합 회로: Latch 방지를 위한 초기값 선언 및 다음 상태 결정
 always @(*) begin
-    r_next_state = r_curr_state; // 기본값 유지로 Latch 방지
-    case (r_curr_state)
-        S_IDLE: if (w_start_tick) r_next_state = S_ACTIVE;
-        S_ACTIVE: if (w_stop_cond) r_next_state = S_IDLE;
-        default: r_next_state = S_IDLE;
-    endcase
-end`,
+        r_next_state = r_curr_state; // Default 할당으로 의도치 않은 래치(Latch) 원천 차단
+
+        case(r_curr_state)
+            S_IDLE: begin
+                if(w_btn_start && time_set_done && !door_en)
+                    r_next_state = S_NORMAL;
+                else if(w_btn_deice && time_set_done && !door_en)
+                    r_next_state = S_DEICE;
+            end
+            S_NORMAL, S_DEICE: begin
+                // 강제 정지 버튼 또는 조리 도중 문이 열렸을 때 즉시 정지
+                if(w_btn_stop || door_en) 
+                    r_next_state = S_IDLE;
+                // 조리 시간 종료 시 완료 상태로 천이
+                else if(timer_zero)       
+                    r_next_state = S_DONE;
+            end
+            S_DONE: begin
+                // ★ 핵심: 부저 트리거용 1클럭 상태 후 즉시 대기 상태로 자동 복귀
+                r_next_state = S_IDLE;    
+            end
+            
+            default: r_next_state = S_IDLE;
+        endcase
+    end`,
         imageUrl: "/FPGA1/top_microwave.png", 
         imageCaption: "키캐드 설계도",
     },

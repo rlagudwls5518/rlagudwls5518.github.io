@@ -26,7 +26,7 @@ export const SKILLS_DATA: SkillCategory[] = [
       {
         name: "C / Embedded C",
         level: "Advanced",
-        desc: "구조체 캡슐화, 함수 포인터 기반 이벤트, 비트마스크 연산 및 메모리 직접 제어",
+        desc: "구조체 캡슐화, 함수 기반 이벤트, 비트마스크 연산 및 메모리 직접 제어",
       },
       {
         name: "STM32 (Register)",

@@ -6,7 +6,7 @@ export const project5Motor: ProjectDetail = {
   subtitle: "HAL 추상화 의존도를 낮추고 타이머(TIM) 및 GPIO 레지스터 직접 조작으로 구현한 정밀 모터 드라이버",
   period: "2026.07 ~ 2026.08",
   teamAndRole: "개인 프로젝트 (베어메탈 레지스터 제어, 타이머 PWM 설계 및 방향 전환 상태 머신 구현)",
-  contribution: "펌웨어 설계 및 하드웨어 구현 100%",
+  contribution: "펌웨어 설계 및 하드웨어 구현 100%(개인별 프로젝트)",
   thumbnailPrompt: "STM32 레지스터 직접 제어를 통한 양방향 DC 모터 PWM 및 상태 머신 제어",
   // thumbnailUrl: "/motor-control.png",
   thumbnailTheme: "amber",
