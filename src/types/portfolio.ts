@@ -21,6 +21,9 @@ export interface TroubleshootingItem {
   title: string;
   issue: string;
   rootCause: string[];
+  imageUrl?: string;      // ★ 추가 1: 단일 트러블슈팅 검증 이미지 경로 (예: "/jojimara/jojimara_osil.jpg")
+  imageCaption?: string;  // ★ 추가 2: 이미지 하단 설명 캡션
+  images?: { url: string; caption?: string }[]; // ★ 추가 3: 사진을 여러 장 넣고 싶을 때 사용 (선택)
   logOrCode?: string;
   solution: string;
   learned: string;

@@ -446,7 +446,42 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                                   ))}
                                 </ul>
                               </div>
+                              {ts.imageUrl && (
+                                <figure className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950/40">
+                                  <img
+                                    src={ts.imageUrl}
+                                    alt={ts.imageCaption || `${ts.title} 검증 이미지`}
+                                    className="w-full max-h-96 object-contain bg-slate-950 mx-auto"
+                                  />
+                                  {ts.imageCaption && (
+                                    <figcaption className="px-4 py-2.5 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
+                                      📷 {ts.imageCaption}
+                                    </figcaption>
+                                  )}
+                                </figure>
+                              )}
 
+                              {ts.images && ts.images.length > 0 && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  {ts.images.map((img, i) => (
+                                    <figure
+                                      key={i}
+                                      className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950/40 flex flex-col justify-between"
+                                    >
+                                      <img
+                                        src={img.url}
+                                        alt={img.caption || `${ts.title} 검증 이미지 ${i + 1}`}
+                                        className="w-full max-h-72 object-contain bg-slate-950 mx-auto"
+                                      />
+                                      {img.caption && (
+                                        <figcaption className="px-3 py-2 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
+                                          📷 {img.caption}
+                                        </figcaption>
+                                      )}
+                                    </figure>
+                                  ))}
+                                </div>
+                              )}
                               {ts.logOrCode && (
                                 <div className="rounded-lg bg-slate-950 text-slate-100 p-4 overflow-x-auto border border-slate-800">
                                   <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-2 font-mono">
