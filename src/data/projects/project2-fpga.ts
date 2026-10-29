@@ -2,8 +2,8 @@ import { ProjectDetail } from "@/types/portfolio";
 
 export const project2Fpga: ProjectDetail = {
   id: "project-2-fpga",
-  title: "RTC 기반 (FPGA)(수정중)",
-  subtitle: "Digilent Basys 3 FPGA와 Verilog HDL을 활용한 하드웨어 레벨 실시간 공조기 및 주변장치 제어",
+  title: "Verilog 기반 전자레인지 (FPGA)(수정중)",
+  subtitle: "Digilent Basys 3 FPGA와 Verilog HDL을 활용한 하드웨어 레벨 전자레인지 시스템",
   period: "2026.10",
   teamAndRole: "개인 설계 프로젝트 (Verilog RTL 모듈 설계, FSM 제어기 및 합성/검증)",
   contribution: "RTL 모듈 설계 및 하드웨어 통합 검증 100%",
@@ -16,7 +16,7 @@ export const project2Fpga: ProjectDetail = {
   thumbnailCenterMain: "RTC 기반 전자레인지 (FPGA)",
   thumbnailFooterLeft: "PWM Motor & Buzzer",
   thumbnailFooterRight: "Zero-CPU Hardware Parallelism",
-  githubUrl: "https://github.com/rlagudwls5518",
+  githubUrl: "https://github.com/rlagudwls5518/FPGA_verilog",
   reportPdfUrl: "/FPGA1/microwave.pdf",
   overview: {
     background:
@@ -26,7 +26,6 @@ export const project2Fpga: ProjectDetail = {
       "FND 7-Segment 동적 구동, PWM 모터 속도 제어, 피에조 부저 효과음 생성 모듈의 완전 병렬 동작 구현",
     ],
     myContributions: [
-      "2-Always 블록 기반의 안정적인 Moore/Mealy FSM 상태 머신 설계로 모드 전환 및 제어 로직 구현",
       "100MHz 시스템 클럭 기반 정밀 Tick 생성기, Up/Down 카운터 및 FND 컨트롤러 모듈 작성",
       "듀티비 가변형 PWM 하드웨어 모듈 및 부저 주파수 생성기 RTL 구현 및 Vivado 시뮬레이션/합성 검증",
     ],
@@ -50,7 +49,7 @@ export const project2Fpga: ProjectDetail = {
       comparison: {
         optionA: {
           name: "단일 블록 내 제어/연산 혼합 설계",
-          desc: "코드 길이는 짧아 보이나 순차 회로(Flip-Flop)와 조합 회로(Combinational Logic)의 경계가 모호해져 글리치(Glitch) 및 래치 발생 위험이 큼.",
+          desc: "코드 길이도 길고 순차 회로와 조합 회로의 경계가 모호해져 글리치 및 래치 발생 위험이 큼.",
         },
         optionB: {
           name: "순차/조합 로직을 분리한 2-Always FSM + Top-down 모듈화",
@@ -77,6 +76,8 @@ always @(*) begin
         default: r_next_state = S_IDLE;
     endcase
 end`,
+        imageUrl: "/FPGA1/top_microwave.png", 
+        imageCaption: "키캐드 설계도",
     },
   ],
   troubleshooting: [
@@ -84,9 +85,9 @@ end`,
       id: "p2-ts-1",
       title: "[트러블슈팅] 서보모터 미작동 문제 및 하드웨어 핀 맵핑 오류",
       issue:
-        "오실로스코프 파형 측정(JB 포트 A15/A14 핀)을 통해 확인한 결과, 하드웨어 핀 할당 오류 및 door_en 신호가 토글될 때 상승 에지만 검출하도록 설계되어 문이 열고 닫히는 전체 변화를 감지하지 못한 문제 발생",
+        "문열림/닫힘 버튼에서 열릴때는 부저가 울리는데 닫힐때 부저가 안울리는 문제 발생",
       rootCause: [
-        "",
+        "오실로스코프 파형 측정(JB 포트 A15/A14 핀)을 통해 확인한 결과, 하드웨어 핀 할당 오류로 추측",
       ],
       images: [
         {
@@ -94,14 +95,14 @@ end`,
           caption: "초기 설정 한 A15 핀 출력 파형 -> 하드웨어 핀설정 다름 파악",
         },
         {
-          url: "/FPGA1/nobuzzer.jpg",
+          url: "/FPGA1/buzzer.jpg",
           caption: "엉뚱한 핀에서 파형 발생 -> 핀설정 오류",
         },
       ],
       solution:
-        "이전 상태와 현재 상태의 불일치를 비교하는 조건문(door_en != r_prev_door_en)으로 변경하여 상승 에지와 하강 에지(문 열림/닫힘 양방향) 모두 정상적으로 인터럽트/상태 전이가 일어나도록 수정",
+        "핀을 설계대로 다시 낌",
       learned:
-        "",
+        "하드웨어 선 하나하나가 모듈 동작하는데 큰 영향을 준다는 것을 알았음",
     },
     {
       id: "p2-ts-2",
@@ -109,11 +110,20 @@ end`,
       issue:
         "문 열림 시에는 부저가 울리지만 닫힐 때 소리가 나지 않던 현상",
       rootCause: [
-        "버튼 처럼 이전 클럭을 저장해서 상승에지를 검출하는 신호를 만들었지만 생각해보니 문이 열리면 1 문이 닫히면 0으로 오는 신호라서 하강에지도 같이 검출해줘야 한다는것을 확인함"
+        "door_en 신호가 토글될 때 상승 에지만 검출하도록 설계되어있어서 문이 열고 닫히는 전체 변화를 감지하지 못하지 않을까 하는 추측"
       ],
-      logOrCode: `
-wire w_start_door = (door_en && !r_prev_door_en);
--> wire w_start_door = (door_en != r_prev_door_en);`,
+      images: [
+        {
+          url: "/FPGA1/servo.jpg", 
+          caption: "열었을때 부저 pwm 출력 파형",
+        },
+        {
+          url: "/FPGA1/noservo.jpg",
+          caption: "닫았을때 부저 pwm 출력 파형",
+        },
+      ],
+      logOrCode: `wire w_start_door = (door_en && !r_prev_door_en); // 상승에지만 검출
+-> wire w_start_door = (door_en != r_prev_door_en); // 하강에지까지 다 검출`,
       solution:
         "이전 상태와 현재 상태의 불일치를 비교하는 조건문(door_en != r_prev_door_en)으로 변경하여 상승 에지와 하강 에지(문 열림/닫힘 양방향) 모두 정상적으로 인터럽트/상태 전이가 일어나도록 수정",
       learned:

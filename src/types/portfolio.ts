@@ -14,6 +14,8 @@ export interface DesignDecision {
   };
   impact: string;
   codeSnippet?: string;
+  imageUrl?: string;     
+  imageCaption?: string; 
 }
 
 export interface TroubleshootingItem {

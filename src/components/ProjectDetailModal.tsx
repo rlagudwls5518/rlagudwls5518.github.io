@@ -369,6 +369,20 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                         </pre>
                       </div>
                     )}
+                    {decision.imageUrl && (
+                      <figure className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950/40 mt-3">
+                        <img
+                          src={decision.imageUrl}
+                          alt={decision.imageCaption || `${decision.title} 회로도 및 테스트벤치`}
+                          className="w-full max-h-96 object-contain bg-slate-950 mx-auto"
+                        />
+                        {decision.imageCaption && (
+                          <figcaption className="px-4 py-2.5 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
+                            📷 {decision.imageCaption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    )}
                   </article>
                 ))}
               </div>

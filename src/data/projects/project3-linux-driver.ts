@@ -6,7 +6,7 @@ export const project3LinuxDriver: ProjectDetail = {
   subtitle: "Jetson Orin Nano 기반 커널 디바이스 드라이버 연동 및 pthreads 멀티스레드 유저 애플리케이션 구현",
   period: "2026.10.09 ~ 2026.10.12",
   teamAndRole: "4인 팀 프로젝트 (유저 애플리케이션 아키텍처, 3개 워커 스레드, fan_api.h 추상화 및 통합 Makefile 전담)",
-  contribution: "멀티스레드 앱 아키텍처 & 드라이버 추상화 API & 빌드 시스템 100%",
+  contribution: "멀티스레드 & 드라이버 추상화 API & 빌드 시스템",
   thumbnailPrompt: "Jetson Orin Nano 리눅스 커널 디바이스 드라이버 및 멀티스레드 제어 아키텍처",
   // thumbnailUrl: "/Linux_driver/main.png",
   thumbnailTheme: "emerald",

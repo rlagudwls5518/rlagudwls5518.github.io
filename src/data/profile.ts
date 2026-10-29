@@ -26,16 +26,16 @@ export const SKILLS_DATA: SkillCategory[] = [
       {
         name: "C / Embedded C",
         level: "Advanced",
-        desc: "구조체 캡슐화, 함수 포인터 기반 이벤트 디스패처, 비트마스크 연산 및 메모리 직접 제어",
+        desc: "구조체 캡슐화, 함수 포인터 기반 이벤트, 비트마스크 연산 및 메모리 직접 제어",
       },
       {
-        name: "STM32 (Register / HAL / FreeRTOS)",
+        name: "STM32 (Register)",
         level: "Advanced",
-        desc: "TIM(ARR/CCR) 레지스터 직접 조작 PWM 생성, USART 인터럽트, 1ms 시스템 틱 및 RTOS 태스크 설계",
+        desc: "TIM(ARR/CCR) 레지스터 직접 조작 PWM 생성, USART 인터럽트, 1ms 시스템 틱 설계",
       },
       {
-        name: "UART / CAN / I2C / SPI",
-        level: "Advanced",
+        name: "UART",
+        level: "Intermediate",
         desc: "이기종 보드 간 커스텀 프레임 파싱, ACK/NACK 피드백 규격 및 에러 핸들링 프로토콜 엔진 구현",
       },
     ],
@@ -50,12 +50,12 @@ export const SKILLS_DATA: SkillCategory[] = [
         desc: "Character 디바이스 드라이버, pthreads 멀티스레딩 및 단일 Mutex 상태 스냅샷 동기화",
       },
       {
-        name: "Jetson Orin Nano (Yocto / Ubuntu)",
+        name: "Jetson Orin Nano (Ubuntu)",
         level: "Intermediate",
-        desc: "JetPack/Yocto 환경 구축, 시리얼 인터페이스 연동 및 커널 로그(dmesg/journalctl) 디버깅",
+        desc: "JetPack 환경 구축, 시리얼 인터페이스 연동 및 커널 로그(dmesg/journalctl) 디버깅",
       },
       {
-        name: "C++ (Qt) & React / Next.js",
+        name: "C++ (Qt)",
         level: "Intermediate",
         desc: "Qt 기반 실시간 시리얼 관제 GUI 애플리케이션 및 모던 웹 대시보드 구축",
       },
@@ -67,17 +67,17 @@ export const SKILLS_DATA: SkillCategory[] = [
     items: [
       {
         name: "Verilog HDL / FPGA (Basys 3)",
-        level: "Advanced",
-        desc: "Xilinx Vivado 기반 FSM 설계, UART+FIFO 아키텍처, PWM 및 FND 컨트롤러 하드웨어 로직 구현",
+        level: "Basic",
+        desc: "Xilinx Vivado 기반 FSM 설계, PWM 및 FND 컨트롤러 하드웨어 로직 구현",
       },
       {
         name: "Circuit Design & Oscilloscope",
-        level: "Advanced",
+        level: "Intermediate",
         desc: "MCU 주변 회로 설계, 오실로스코프 파형 분석을 통한 신호 무결성 검증 및 하드웨어 디버깅",
       },
       {
         name: "Makefile / Git / Cross-Compile",
-        level: "Advanced",
+        level: "Basic",
         desc: "ARM툴체인 크로스 컴파일 통합 Makefile 작성 및 인터페이스 정의서 기반 협업",
       },
     ],
