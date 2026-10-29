@@ -2,7 +2,7 @@ import { ProjectDetail } from "@/types/portfolio";
 
 export const project6Parking: ProjectDetail = {
   id: "project-5-parking",
-  title: "실시간 IoT 기반 스마트 주차 관제 시스템",
+  title: "실시간 IoT 기반 스마트 주차 관제 시스템(수정중)",
   subtitle: "STM32 마이크로컨트롤러와 Qt(C++) GUI를 UART 시리얼 프로토콜로 연동한 주차 타워 통합 관리 시스템",
   period: "2026.08",
   teamAndRole: "3인 팀 프로젝트 (STM32 차단기 서보모터 제어, 차량 슬롯 상태 관리, 상태 표시 LED 제어 담당)",

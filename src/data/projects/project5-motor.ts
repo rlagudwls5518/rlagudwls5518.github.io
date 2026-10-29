@@ -2,7 +2,7 @@ import { ProjectDetail } from "@/types/portfolio";
 
 export const project5Motor: ProjectDetail = {
   id: "project-4-motor",
-  title: "STM32 레지스터 직접 제어 기반 양방향 DC 모터 제어 시스템",
+  title: "STM32 레지스터 직접 제어 기반 양방향 DC 모터 제어 시스템(수정중)",
   subtitle: "HAL 추상화 의존도를 낮추고 타이머(TIM) 및 GPIO 레지스터 직접 조작으로 구현한 정밀 모터 드라이버",
   period: "2026.07 ~ 2026.08",
   teamAndRole: "개인 프로젝트 (베어메탈 레지스터 제어, 타이머 PWM 설계 및 방향 전환 상태 머신 구현)",

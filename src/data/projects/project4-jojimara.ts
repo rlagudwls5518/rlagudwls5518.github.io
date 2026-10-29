@@ -75,7 +75,7 @@ export const project4Jojimara: ProjectDetail = {
           "파싱 엔진과 실제 제어 비즈니스 로직을 완벽히 분리하여, 신규 명령이 추가되더라도 cmd_table에 엔트리 한 줄만 추가하면 되도록 확장성을 생각했고 정의되지 않은 명령 수신 시 일관되게 NACK_INVALID_CMD 피드백을 반환하도록 표준화했습니다.",
       },
       impact:
-        "엣지 애플리케이션 담당 팀원과의 협업 시 사전 합의된 인터페이스 정의서와 1:1로 매핑되는 클린 코드를 유지했으며, 만약 명령어 추가 및 수정이 필요한 경우 간편하게 수정이나 추가가 가능하도록 설계함.",
+        "애플리케이션 담당 팀원과의 협업 시 사전 합의된 인터페이스 정의서와 1:1로 매핑되는 클린 코드를 유지했으며, 만약 명령어 추가 및 수정이 필요한 경우 간편하게 수정이나 추가가 가능하도록 설계함.",
       codeSnippet: `typedef void (*CmdHandler)(void);
 typedef struct {
     CommandType cmd_type;      // 명령어 Enum 타입
@@ -146,7 +146,7 @@ void dcmotor_start(DCMotor_t *motor, uint32_t speed) {
       ],
       images: [
         {
-          url: "/jojimara/time_out.jpg", // 타임 아웃발생사진
+          url: "/jojimara/time_out.png", // 타임 아웃발생사진
           caption: "Jetson -> stm32 로 데이터를 보내고 수신이 안되는 상황",
         },
         {

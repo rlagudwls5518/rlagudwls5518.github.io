@@ -2,7 +2,7 @@ import { ProjectDetail } from "@/types/portfolio";
 
 export const project2Fpga: ProjectDetail = {
   id: "project-2-fpga",
-  title: "RTC 기반 스마트 공조기 제어 시스템 (FPGA)",
+  title: "RTC 기반 스마트 공조기 제어 시스템 (FPGA)(수정중)",
   subtitle: "Digilent Basys 3 FPGA와 Verilog HDL을 활용한 하드웨어 레벨 실시간 공조기 및 주변장치 제어",
   period: "2026.10",
   teamAndRole: "팀/개인 설계 프로젝트 (Verilog RTL 모듈 설계, FSM 제어기 및 합성/검증)",
