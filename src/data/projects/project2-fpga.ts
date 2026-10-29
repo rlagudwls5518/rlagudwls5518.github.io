@@ -20,9 +20,9 @@ export const project2Fpga: ProjectDetail = {
   reportPdfUrl: "/FPGA1/microwave.pdf",
   overview: {
     background:
-      "소프트웨어(CPU) 개입 없이 순수 디지털 논리 회로(Verilog HDL)만으로 로터리 엔코더, DC 팬 모터 PWM 제어, FND 디스플레이 및 피에조 부저를 병렬 처리하는 하드웨어 간이 전자레인지입니다.",
+      "소프트웨어 개입 없이 순수 디지털 논리 회로만으로 로터리 엔코더, DC 팬 모터 PWM 제어, FND 디스플레이 및 피에조 부저를 병렬 처리하는 하드웨어 간이 전자레인지입니다.",
     goals: [
-      "클럭 분주기(Tick Generator)와 유한 상태 머신(FSM)을 이용한 정밀한 타이밍 제어 회로 설계",
+      "클럭 분주기와 유한 상태 머신을 이용한 정밀한 타이밍 제어 회로 설계",
       "FND 7-Segment 동적 구동, PWM 모터 속도 제어, 피에조 부저 효과음 생성 모듈의 완전 병렬 동작 구현",
     ],
     myContributions: [
