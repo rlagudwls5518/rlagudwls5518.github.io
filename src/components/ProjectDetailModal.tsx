@@ -205,7 +205,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
               <div className="flex items-center gap-2 mb-4">
                 <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
                 <h3 id="section-overview" className="text-lg font-bold">
-                  1. 프로젝트 개요 및 핵심 기여 (Overview & Tech Stack)
+                  1. 프로젝트 개요 및 핵심 기여 
                 </h3>
               </div>
 
@@ -274,7 +274,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
               <div className="flex items-center gap-2 mb-4">
                 <Cpu className="w-5 h-5 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
                 <h3 id="section-architecture" className="text-lg font-bold">
-                  2. 설계 및 아키텍처 고민 (Design Decisions)
+                  2. 설계 및 아키텍처 고민 
                 </h3>
               </div>
 
@@ -378,7 +378,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                         />
                         {decision.imageCaption && (
                           <figcaption className="px-4 py-2.5 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
-                            📷 {decision.imageCaption}
+                             {decision.imageCaption}
                           </figcaption>
                         )}
                       </figure>
@@ -393,7 +393,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
               <div className="flex items-center gap-2 mb-4">
                 <AlertTriangle className="w-5 h-5 text-amber-500" aria-hidden="true" />
                 <h3 id="section-troubleshooting" className="text-lg font-bold">
-                  3. 트러블슈팅 및 기술적 문제 해결 (Troubleshooting)
+                  3. 트러블슈팅 및 기술적 문제 해결 
                 </h3>
               </div>
 
@@ -441,7 +441,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                             <div className="p-5 space-y-4 text-xs sm:text-sm">
                               <div className="p-3.5 rounded-lg bg-rose-50/70 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50">
                                 <div className="font-bold text-rose-800 dark:text-rose-300 mb-1">
-                                  🚨 증상 및 문제 발생 (Issue)
+                                  🚨 증상 및 문제 발생 
                                 </div>
                                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
                                   {ts.issue}
@@ -450,7 +450,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
 
                               <div className="p-3.5 rounded-lg bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50">
                                 <div className="font-bold text-amber-900 dark:text-amber-300 mb-1.5">
-                                  🔍 원인 분석 및 가설 검증 (Root Cause Analysis)
+                                  🔍 원인 분석 및 가설 검증 
                                 </div>
                                 <ul className="space-y-1.5 text-slate-700 dark:text-slate-300 list-disc list-inside">
                                   {ts.rootCause.map((cause, idx) => (
@@ -469,7 +469,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                                   />
                                   {ts.imageCaption && (
                                     <figcaption className="px-4 py-2.5 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
-                                      📷 {ts.imageCaption}
+                                       {ts.imageCaption}
                                     </figcaption>
                                   )}
                                 </figure>
@@ -489,7 +489,7 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
                                       />
                                       {img.caption && (
                                         <figcaption className="px-3 py-2 text-xs text-center text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 font-medium">
-                                          📷 {img.caption}
+                                           {img.caption}
                                         </figcaption>
                                       )}
                                     </figure>
@@ -510,18 +510,18 @@ export const ProjectDetailModal: React.FC<ProjectModalProps> = ({
 
                               <div className="p-3.5 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900/50">
                                 <div className="font-bold text-indigo-900 dark:text-indigo-300 mb-1">
-                                  🛠️ 해결 방안 및 적용 (Solution)
+                                  🛠️ 해결 방안 및 적용
                                 </div>
-                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                                   {ts.solution}
                                 </p>
                               </div>
 
                               <div className="p-3.5 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/25 border border-emerald-200 dark:border-emerald-900/60">
                                 <div className="font-bold text-emerald-900 dark:text-emerald-300 mb-1">
-                                  ✅ 결과 및 인사이트 (Result & Learned)
+                                  ✅ 결과 및 배운점
                                 </div>
-                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                                   {ts.learned}
                                 </p>
                               </div>

@@ -2,7 +2,7 @@ import { ProjectDetail } from "@/types/portfolio";
 
 export const project2Fpga: ProjectDetail = {
   id: "project-2-fpga",
-  title: "Verilog 기반 전자레인지 (FPGA)(수정중)",
+  title: "Verilog 기반 전자레인지 (FPGA)",
   subtitle: "Digilent Basys 3 FPGA와 Verilog HDL을 활용한 하드웨어 레벨 전자레인지 시스템",
   period: "2026.10",
   teamAndRole: "개인 설계 프로젝트 (Verilog RTL 모듈 설계, FSM 제어기 및 합성/검증)",
@@ -13,7 +13,7 @@ export const project2Fpga: ProjectDetail = {
   thumbnailBadgeLeft: "Verilog HDL / Basys 3",
   thumbnailBadgeRight: "FSM & UART FIFO",
   thumbnailCenterSub: "Xilinx Vivado • Hardware Logic Design",
-  thumbnailCenterMain: "RTC 기반 전자레인지 (FPGA)",
+  thumbnailCenterMain: "RTC 기반 전자레인지",
   thumbnailFooterLeft: "PWM Motor & Buzzer",
   thumbnailFooterRight: "Zero-CPU Hardware Parallelism",
   githubUrl: "https://github.com/rlagudwls5518/FPGA_verilog",
@@ -69,7 +69,7 @@ always @(posedge clk or posedge reset) begin
 
 // 2. 조합 회로: Latch 방지를 위한 초기값 선언 및 다음 상태 결정
 always @(*) begin
-        r_next_state = r_curr_state; // Default 할당으로 의도치 않은 래치(Latch) 원천 차단
+        r_next_state = r_curr_state; // Default 할당으로 의도치 않은 래치 원천 차단
 
         case(r_curr_state)
             S_IDLE: begin
@@ -103,7 +103,7 @@ always @(*) begin
       id: "p2-ts-1",
       title: "[트러블슈팅] 서보모터 미작동 문제 및 하드웨어 핀 맵핑 오류",
       issue:
-        "문열림/닫힘 버튼에서 열릴때는 부저가 울리는데 닫힐때 부저가 안울리는 문제 발생",
+        "서보모터 구동 신호를 인가했으나 모터가 전혀 반응하지 않는 현상",
       rootCause: [
         "오실로스코프 파형 측정(JB 포트 A15/A14 핀)을 통해 확인한 결과, 하드웨어 핀 할당 오류로 추측",
       ],
@@ -117,8 +117,11 @@ always @(*) begin
           caption: "엉뚱한 핀에서 파형 발생 -> 핀설정 오류",
         },
       ],
-      solution:
-        "핀을 설계대로 다시 낌",
+      solution: `1단계 (로직 검증): FPGA 내부 서보모터 PWM 생성 로직 결함 여부를 확인하기 위해 설정된 출력 핀(JB 포트 A15)에 오실로스코프를 연결해 신호 계측. ➔ 목표 핀에서 PWM 파형이 관측되지 않음.
+
+      2단계 (핀 매핑 추적): 인접 I/O 핀(A14)을 스캔 계측한 결과, 엉뚱한 핀에서 정상적인 모터 PWM 제어 신호가 출력되고 있음을 확인.
+
+3단계 (원인 확정): XDC 상의 핀 번호와 실제 보드 확장 포트에 결선된 서보모터 제어선 간의 물리적 배선 연결 원인 규명.`,
       learned:
         "하드웨어 선 하나하나가 모듈 동작하는데 큰 영향을 준다는 것을 알았음",
     },
@@ -128,7 +131,8 @@ always @(*) begin
       issue:
         "문 열림 시에는 부저가 울리지만 닫힐 때 소리가 나지 않던 현상",
       rootCause: [
-        "door_en 신호가 토글될 때 상승 에지만 검출하도록 설계되어있어서 문이 열고 닫히는 전체 변화를 감지하지 못하지 않을까 하는 추측"
+        "문 개폐 상태를 나타내는 door_en 신호에서 부저 트리거 신호(w_start_door)가 상승 에지(문 열림 시점)만 검출하도록 작성되어 있었습니다.",
+        "그 결과 문이 닫힐 때 발생하는 하강 에지를 FSM/부저 카운터가 인지하지 못해 PWM 출력이 활성화되지 않음을 오실로스코프 신호로 확인했습니다",
       ],
       images: [
         {
@@ -143,9 +147,10 @@ always @(*) begin
       logOrCode: `wire w_start_door = (door_en && !r_prev_door_en); // 상승에지만 검출
 -> wire w_start_door = (door_en != r_prev_door_en); // 하강에지까지 다 검출`,
       solution:
-        "이전 상태와 현재 상태의 불일치를 비교하는 조건문(door_en != r_prev_door_en)으로 변경하여 상승 에지와 하강 에지(문 열림/닫힘 양방향) 모두 정상적으로 인터럽트/상태 전이가 일어나도록 수정",
+        "이전 클록 샘플링 값과 현재 값의 불일치 조건을 적용하여 문 열림/닫힘 모든 전이 이벤트에서 부저 트리거가 1클록 펄스로 정상 발생하도록 수정하여 의도한 알림음 출력 확인.", 
       learned:
-        "",
+        `단순히 신호가 활성화되어 있는 상태를 유지하는 것과 사용자의 행동에 반응하는 이벤트를 명확히 분리하여 설계해야 함을 체감했습니다.
+        실제 보드 레벨에서의 계측 파형 비교가 논리 결함을 빠르게 좁히는 핵심 도구임을 배웠습니다.`
     },
   ],
 };
